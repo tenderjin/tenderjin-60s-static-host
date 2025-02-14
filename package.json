@@ -6,7 +6,7 @@
     "update": "esno ./update-60s.ts",
     "update:local": "esno --env-file=.env ./update-60s.ts"
   },
-  "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",
+  "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.13.1",

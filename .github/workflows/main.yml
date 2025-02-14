@@ -41,31 +41,33 @@ jobs:
           WECHAT_TOKEN: ${{ secrets.WECHAT_TOKEN }}
           WECHAT_COOKIE: ${{ secrets.WECHAT_COOKIE }}
         run: |
-          # 配置 Git
+          # config git
           git config --local user.email "bot@github.com"
           git config --local user.name "bot"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-          # 拉取最新代码
+          # pull latest code
           git pull --rebase
 
-          # 获取日期参数
-          if [ -n "${{ github.event.inputs.date }}" ]; then
-            DATE=${{ github.event.inputs.date }}
+          # run update script with an optional date, if provided
+          if [ -z "${{ github.event.inputs.date }}" ]; then
+            pnpm run update
           else
-            DATE=$(date '+%Y-%m-%d')
+            pnpm run update --date=${{ github.event.inputs.date }}
           fi
 
-          # 运行更新脚本
-          pnpm run update --date=$DATE
-
-          # 添加所有更改到暂存区
+          # Add all changes to staging
           git add -A .
 
-          # 检查是否有更改
+          # check if there are changes (including new files)
           if [ -n "$(git status --porcelain)" ]; then
-            # 如果有更改，提交并推送
-            git commit -m "chore: [bot] update $DATE data"
+            # if there are changes, commit & push
+            if [ -z "${{ github.event.inputs.date }}" ]; then
+                COMMIT_DATE=$(date '+%Y-%m-%d')
+            else
+                COMMIT_DATE=${{ github.event.inputs.date }}
+            fi
+            git commit -m "chore: [bot] update $COMMIT_DATE data"
             git push
           else
             echo "No changes to commit"

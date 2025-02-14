@@ -20,7 +20,7 @@ if (inputDate && !/^\d{4}-\d{2}-\d{2}$/.test(inputDate)) {
 }
 
 const date = (inputDate || localeDate()).replace(/\//g, '-')
-const static60sBase = path.resolve(__dirname, 'static/60s')
+const static60sBase = path.resolve(__dirname, './static/60s')
 
 debug('date', date)
 debug('static60sBase', static60sBase)

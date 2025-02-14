@@ -21,10 +21,10 @@ Access the latest data through:
 > [!TIP]
 > Replace `[yyyy]-[MM]-[dd]` with the desired date in `YYYY-MM-DD` format, such as `2025-02-08`.
 
-- GitHub Raw URL: ` https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/[yyyy]-[MM]-[dd].json`
+- GitHub Raw URL: ` https://github.com/tenderjin/tenderjin-60s-static-host/blob/main/static/60s/[yyyy]-[MM]-[dd].json`
 
 
-- GitHub Raw URL: https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/2025-02-14.json
+- GitHub Raw URL: https://github.com/tenderjin/tenderjin-60s-static-host/blob/main/static/60s/2025-02-14.json
 ## Data Format Example
 
 All data is stored in JSON format with consistent structure, for example:

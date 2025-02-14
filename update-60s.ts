@@ -81,6 +81,12 @@ fetchArticles({
         process.exit(0)
       }
 
+      // 添加序号
+      item.news = item.news.map((newsItem, index) => ({
+        ...newsItem,
+        index: index + 1, // 添加序号，从1开始
+      }));
+
       const data = {
         date: date,
         ...item,

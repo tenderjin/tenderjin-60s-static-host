@@ -1,0 +1,74 @@
+name: schedule
+
+on:
+  schedule:
+    # - cron: '10 0,4,7,9,23 * * *'
+
+    # 根据目标北京时间倒推 8 小时设置 UTC 时间
+    - cron: '10 16,20,23,1,15 * * *'
+
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Optional data execution date in YYYY-MM-DD format.'
+        required: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Fetch data & Update
+        env:
+          WECHAT_TOKEN: ${{ secrets.WECHAT_TOKEN }}
+          WECHAT_COOKIE: ${{ secrets.WECHAT_COOKIE }}
+        run: |
+          # config git
+          git config --local user.email "bot@github.com"
+          git config --local user.name "bot"
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+          # pull latest code
+          git pull --rebase
+
+          # run update script with an optional date, if provided
+          if [ -z "${{ github.event.inputs.date }}" ]; then
+            pnpm run update
+          else
+            pnpm run update --date=${{ github.event.inputs.date }}
+          fi
+
+          # Add all changes to staging
+          git add -A .
+
+          # check if there are changes (including new files)
+          if [ -n "$(git status --porcelain)" ]; then
+            # if there are changes, commit & push
+            if [ -z "${{ github.event.inputs.date }}" ]; then
+                COMMIT_DATE=$(date '+%Y-%m-%d')
+            else
+                COMMIT_DATE=${{ github.event.inputs.date }}
+            fi
+            git commit -m "chore: [bot] update $COMMIT_DATE data"
+            git push
+          else
+            echo "No changes to commit"
+          fi

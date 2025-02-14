@@ -22,9 +22,9 @@ Access the latest data through:
 > Replace `[yyyy]-[MM]-[dd]` with the desired date in `YYYY-MM-DD` format, such as `2025-02-08`.
 
 - GitHub 原始 URL： https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/[yyyy]-[MM]-[dd].json
-         加速url：https://raw.gitmirror.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/[yyyy]-[MM]-[dd].json
-  GitHub 原始 URL：https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/2025-02-14.json
-          加速url：https://raw.gitmirror.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/2025-02-14.json
+        - 加速url：https://raw.gitmirror.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/[yyyy]-[MM]-[dd].json
+-  GitHub 原始 URL：https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/2025-02-14.json
+       -   加速url：https://raw.gitmirror.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/2025-02-14.json
 ## Data Format Example
 
 All data is stored in JSON format with consistent structure, for example:

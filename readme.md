@@ -1,33 +1,24 @@
-# 60s Static Data Host
+一个轻量级存储库，托管每日新闻数据，通过 GitHub Actions 自动更新。
 
-![Update Status](https://github.com/vikiboss/60s-static-host/workflows/schedule/badge.svg)
+概述
+🔄 每天自动更新
+📰 存储精选的新闻数据
+🚀 快速静态托管
+🔑 轻松访问数据
+📊 REST API 友好 & JSON 格式
+用法
+通过以下方式访问最新数据：
 
-A lightweight repository hosting daily news data, automatically updated via GitHub Actions.
+GitHub 原始 URL：https://raw.githubusercontent.com
+提示
 
-## Overview
+替换为所需的格式日期，例如 .[yyyy]-[MM]-[dd]YYYY-MM-DD2025-02-08
 
-- 🔄 Auto-updates daily
-- 📰 Stores curated news data
-- 🚀 Fast static hosting
-- 🔑 Easy data access
-- 📊 REST API friendly & JSON format
+GitHub 原始 URL： https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/[yyyy]-[MM]-[dd].json
 
-## Usage
-
-Access the latest data through:
-
-- GitHub Raw URL: https://raw.githubusercontent.com
-
-> [!TIP]
-> Replace `[yyyy]-[MM]-[dd]` with the desired date in `YYYY-MM-DD` format, such as `2025-02-08`.
-
-- GitHub Raw URL: ` https://github.com/tenderjin/tenderjin-60s-static-host/blob/main/static/60s/[yyyy]-[MM]-[dd].json`
-
-
-- GitHub Raw URL: https://github.com/tenderjin/tenderjin-60s-static-host/blob/main/static/60s/2025-02-14.json
-## Data Format Example
-
-All data is stored in JSON format with consistent structure, for example:
+GitHub 原始 URL：https://raw.githubusercontent.com/tenderjin/tenderjin-60s-static-host/refs/heads/main/static/60s/2025-02-14.json
+数据格式示例
+所有数据都以具有一致结构的 JSON 格式存储，例如：
 
 ```json
 {
@@ -63,6 +54,3 @@ All data is stored in JSON format with consistent structure, for example:
 }
 ```
 
-## License
-
-MIT

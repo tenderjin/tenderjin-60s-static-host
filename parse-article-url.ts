@@ -1,5 +1,5 @@
 import { load } from 'cheerio'
-import { debug } from './fetch-articles'
+import { debug } from './fetch-articles.ts'
 
 const TAG_NAME = 'mp-common-mpaudio'
 const ATTR_NAME = 'voice_encode_fileid'
@@ -11,7 +11,11 @@ const END_REG = /[；！～。，]\s*$/
 export async function paseArticleUrl(url: string) {
   debug('url', url)
 
-  const html = await fetch(url)
+  const html = await fetch(url, {
+    headers: {
+      'User-Agent': `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36`,
+    },
+  })
     .then(e => e.text())
     .catch(() => fetch(url).then(e => e.text()))
 
@@ -20,8 +24,8 @@ export async function paseArticleUrl(url: string) {
 
   let tip = ''
 
-  const data = $('div.rich_media_content section p span')
-    .filter((_, e) => e.children.length === 1)
+  const data = $('div.rich_media_content section p > span')
+    // .filter((_, e) => e.children.length === 1)
     .toArray()
     .map(e => $(e).text())
     .filter(e => e.length >= 6)

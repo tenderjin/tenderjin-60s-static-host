@@ -1,10 +1,11 @@
 {
   "name": "60s",
   "type": "module",
-  "packageManager": "pnpm@9.14.4",
+  "packageManager": "pnpm@10.4.1",
   "scripts": {
     "update": "esno ./update-60s.ts",
-    "update:local": "esno --env-file=.env ./update-60s.ts"
+    "update:local": "node --no-warnings --experimental-transform-types --env-file=.env ./update-60s.ts",
+    "debug": "node --no-warnings --experimental-transform-types ./debug/index.ts"
   },
   "author": "",
   "license": "MIT",

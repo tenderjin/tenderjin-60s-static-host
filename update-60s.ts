@@ -47,7 +47,10 @@ if (!fakeid || !token || !cookie) {
 }
 
 const [year, month, day] = date.split('-').map(Number)
-const query = `${month}月${day}日 读懂世界`
+
+const queryDate = `${month}月${day}日`
+const queryWord = '读懂世界'
+const query = `${queryDate} ${queryWord}`
 
 debug('year month day', { year, month, day })
 debug('query', query)
@@ -62,14 +65,14 @@ fetchArticles({
 }).then(({ isOK, list, error }) => {
   if (isOK) {
     const targetArticle = list.find(e => {
-      const isTitleMatch = e.title.includes('读懂世界')
+      const isTitleMatch = [queryDate, queryWord].every(word => e.title.includes(word))
       const date = new Date(e.update_time * 1000)
       const isDateMatch = date.getFullYear() === year && date.getMonth() + 1 === month
       return isTitleMatch && isDateMatch
     })
 
     if (!targetArticle) {
-      console.error(`expected article not update, need title: ${query}`)
+      console.error(`expected article not update, need ${queryDate} and ${queryWord}`)
       process.exit(0)
     }
 

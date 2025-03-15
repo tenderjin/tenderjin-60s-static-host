@@ -1,0 +1,27 @@
+{
+  "name": "60s",
+  "type": "module",
+  "packageManager": "pnpm@10.6.2",
+  "scripts": {
+    "update": "esno ./src/update-60s.ts",
+    "update:local": "node --no-warnings --experimental-transform-types --env-file=.env ./src/update-60s.ts",
+    "screenshot": "esno ./src/screenshot.ts",
+    "debug": "node --no-warnings --experimental-transform-types ./debug/index.ts"
+  },
+  "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "cheerio": "^1.0.0",
+    "esno": "^4.8.0",
+    "puppeteer": "^24.4.0"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "puppeteer"
+    ],
+    "onlyBuiltDependencies": [
+      "puppeteer"
+    ]
+  }
+}

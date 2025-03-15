@@ -52,11 +52,18 @@ export async function paseArticleUrl(url: string) {
       .first()
       .attr(ATTR_NAME) || ''
 
-  debug('html', html.slice(0, 3000))
+  const image =
+    $('img')
+      .filter((_, e) => !!$(e).attr('data-src'))
+      .last()
+      .attr('data-src') || ''
+
+  // debug('html', html.slice(0, 3000))
   debug('news', news)
   debug('tip', tip)
   debug('musicAudioId', musicAudioId)
   debug('audioId', audioId)
+  debug('image', image)
 
   return {
     news,
@@ -64,6 +71,7 @@ export async function paseArticleUrl(url: string) {
       music: musicAudioId ? `https://res.wx.qq.com/voice/getvoice?mediaid=${musicAudioId}` : '',
       news: audioId ? `https://res.wx.qq.com/voice/getvoice?mediaid=${audioId}` : '',
     },
+    image,
     tip,
   }
 }

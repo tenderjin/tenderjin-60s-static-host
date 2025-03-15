@@ -57,6 +57,7 @@ export async function fetchArticles(options: FetchOptions): Promise<FetchRespons
       }
     })
     .then(e => {
+      debug('data', e)
       debug('app_msg_cnt', e?.app_msg_cnt)
       debug('app_msg_list', e?.app_msg_list)
       debug('title', e?.app_msg_list?.map((e: any) => e.title)?.join(', '))
